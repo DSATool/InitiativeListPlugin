@@ -1,0 +1,10 @@
+{
+	"releaseDate" : "@releaseDate@",
+	"previousReleaseDate" : "@previousReleaseDate@",
+	"previousReleaseLink" : "https://raw.githubusercontent.com/DSATool/InitiativeListPlugin/master/release/InitiativeList_@previousReleaseDate@.zip",
+	"updateInfo" : "https://raw.githubusercontent.com/DSATool/InitiativeListPlugin/master/release/update-info.json",
+	"signatureProviderName" : "SunEC",
+	"signatureKeyAlgorithm" : "EC",
+	"signatureAlgorithm" : "SHA512withECDSA",
+	"signatureKey" : "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEolaif4SrhIkWi+eahsDvA1Sx4mLi47o1k5f584C64aWxYp+cxVvH55NwcDnJpqDRhTNc8zCbAMwgBz1H0J0dJQ=="
+}

@@ -1,0 +1,33 @@
+.participant-list .list-cell:filled {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+}
+
+.participant-list .list-cell:selected {
+	-highlight: linear-gradient(to top,
+            ladder(
+                -fx-color,
+                derive(-fx-color,-24%) 75%,
+                derive(-fx-color,-26%) 80%
+            ),
+            derive(-fx-color,-50%));
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -highlight;
+}
+
+.participant-list .list-cell:selected .name {
+	-fx-text-fill: white;
+}
+
+.energy > .bar {
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.energy > .track {
+   -fx-background-radius: 0;
+   -fx-background-insets: 0;
+}
+
+.participant-list .scroll-bar:vertical {
+	-fx-padding: -7;
+	-fx-opacity: 0;
+}

@@ -1,0 +1,4 @@
+{
+	"releaseDate" : "@releaseDate@",
+	"releaseLink" : "https://raw.githubusercontent.com/DSATool/InitiativeListPlugin/master/release/InitiativeList_@releaseDate@.zip"
+}

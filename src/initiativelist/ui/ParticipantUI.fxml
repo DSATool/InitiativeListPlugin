@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import dsatool.ui.ReactiveSpinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+
+<VBox fx:id="root" minHeight="70" maxHeight="70" spacing="2" xmlns:fx="http://javafx.com/fxml" >
+   <HBox>
+      <Label fx:id="nameLabel" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="name" >
+         <padding><Insets top="4" right="0" bottom="0" left="0" /></padding>
+      </Label>
+      <ReactiveSpinner fx:id="iniSpinner" imin="-99" imax="999" minWidth="60" maxWidth="60" />
+   </HBox>
+   <VBox minHeight="40" maxHeight="40" maxWidth="Infinity" >
+      <ProgressBar fx:id="lepBar" maxWidth="Infinity" prefHeight="20" styleClass="energy" />
+      <ProgressBar fx:id="aupBar" maxWidth="Infinity" prefHeight="20" styleClass="energy" />
+      <ProgressBar fx:id="aspBar" maxWidth="Infinity" prefHeight="20" styleClass="energy" managed="false" />
+      <ProgressBar fx:id="kapBar" maxWidth="Infinity" prefHeight="20" styleClass="energy" managed="false" />
+   </VBox>
+</VBox>
