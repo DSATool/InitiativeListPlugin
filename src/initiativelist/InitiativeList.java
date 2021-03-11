@@ -47,15 +47,17 @@ public class InitiativeList extends Plugin {
 	public void initialize() {
 		Main.addDetachedToolComposite("Kampf", "Initiative", 736, 550, () -> {
 			controller = new InitiativeListController();
-			getNotifications = true;
 			return controller.getRoot();
 		}, window -> {
 			controller.setStage(window);
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see plugins.Plugin#load()
+	 */
 	@Override
-	protected void load() {
-		controller.reset();
-	}
+	protected void load() {}
 }
