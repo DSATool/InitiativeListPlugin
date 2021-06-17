@@ -237,14 +237,14 @@ public class InitiativeListController {
 		fillHeroList();
 		fillNPCList();
 
-		ResourceManager.addPathListener("characters/", (discard) -> {
+		ResourceManager.addPathListener("characters/", discard -> {
 			if (!discard) {
 				fillHeroList();
 				reset();
 			}
 		});
 
-		ResourceManager.addPathListener("npcs/", (discard) -> {
+		ResourceManager.addPathListener("npcs/", discard -> {
 			if (!discard) {
 				fillNPCList();
 				reset();

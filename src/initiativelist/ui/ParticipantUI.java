@@ -227,13 +227,12 @@ public class ParticipantUI {
 		final EventHandler<? super MouseEvent> changeHandler = lepBar.getOnMouseClicked();
 		final EventHandler<? super MouseEvent> tooltipHandler = lepBar.getOnMouseMoved();
 		lepBar.setOnMouseClicked(event -> {
-			if (event.getButton().equals(MouseButton.PRIMARY)) {
+			if (MouseButton.PRIMARY.equals(event.getButton())) {
 				changeHandler.handle(event);
-				tooltipHandler.handle(event);
 			} else {
 				lep.setManualModifier(-getProgressValue(lepBar, event, lep.getMax()) - lep.getMax());
-				tooltipHandler.handle(event);
 			}
+			tooltipHandler.handle(event);
 		});
 
 		iniSpinner.disableProperty().bind(disabled);
@@ -288,7 +287,7 @@ public class ParticipantUI {
 
 	private void registerHandlers(final ProgressBar bar, final Energy energy, final BooleanExpression isNegative) {
 		final EventHandler<MouseEvent> changeHandler = event -> {
-			if (event.getButton().equals(MouseButton.PRIMARY)) {
+			if (MouseButton.PRIMARY.equals(event.getButton())) {
 				energy.setManualModifier(getProgressValue(bar, event, energy.getMax()) - energy.getMax());
 			}
 		};
