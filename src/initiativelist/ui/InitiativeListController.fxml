@@ -21,26 +21,26 @@
          <VBox.margin><Insets top="4" right="-1" bottom="2" left="0" /></VBox.margin>
          <Button fx:id="menuButton" text="&#xE8B8;" onAction="#showMenu" >
             <HBox.margin><Insets top="0" right="20" bottom="0" left="0" /></HBox.margin>
-            <padding><Insets top="4" right="4" bottom="4" left="4" /></padding>
+            <padding><Insets top="3" right="4" bottom="-1" left="4" /></padding>
             <font>
-               <Font name="Material Icons" size="16.0" />
+               <Font name="Material Symbols Outlined" size="16.0" />
             </font>
          </Button>
          <Label text="KR  " />
          <ReactiveSpinner fx:id="round" imin="1" imax="999" initialValue="1" prefWidth="35" editable="true" />
-         <Button text="&#xE037;" onAction="#advanceRound" >
+         <Button text="&#xE5DF;" onAction="#advanceRound" >
             <HBox.margin><Insets top="0" right="20" bottom="0" left="0" /></HBox.margin>
-            <padding><Insets top="4" right="2" bottom="4" left="1" /></padding>
+            <padding><Insets top="-4" right="-3" bottom="-10" left="-3" /></padding>
             <font>
-               <Font name="Material Icons" size="16.0" />
+               <Font name="Material Symbols Outlined" size="25.0" />
             </font>
          </Button>
          <Label text="Ini  " />
          <ReactiveSpinner fx:id="phase" imin="0" imax="999" prefWidth="35" editable="true" />
-         <Button text="&#xE037;" onAction="#advancePhase" >
-            <padding><Insets top="4" right="2" bottom="4" left="1" /></padding>
+         <Button text="&#xE5DF;" onAction="#advancePhase" >
+            <padding><Insets top="-4" right="-3" bottom="-10" left="-3" /></padding>
             <font>
-               <Font name="Material Icons" size="16.0" />
+               <Font name="Material Symbols Outlined" size="25.0" />
             </font>
          </Button>
       </HBox>
