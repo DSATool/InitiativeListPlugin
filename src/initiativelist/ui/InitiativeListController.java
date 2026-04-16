@@ -303,7 +303,9 @@ public class InitiativeListController {
 	private void advanceRound() {
 		setState(false);
 		round.getValueFactory().setValue(round.getValue() + 1);
-		selected.set(list.getItems().get(0));
+		if (!list.getItems().isEmpty()) {
+			selected.set(list.getItems().get(0));
+		}
 	}
 
 	private void fillHeroList() {
