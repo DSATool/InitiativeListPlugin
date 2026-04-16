@@ -119,8 +119,10 @@ public class InitiativeListController {
 			@Override
 			public void updateItem(final ParticipantUI item, final boolean isEmpty) {
 				super.updateItem(item, isEmpty);
-				if (isEmpty) {
+				getStyleClass().remove("empty-row");
+				if (isEmpty || item == null) {
 					setGraphic(null);
+					getStyleClass().add("empty-row");
 				} else {
 					setGraphic(item.getRoot());
 				}
@@ -170,7 +172,16 @@ public class InitiativeListController {
 		};
 
 		heroesList.setCellFactory(tv -> {
-			final TreeCell<JSONObject> cell = new TextFieldTreeCell<>(heroConverter);
+			final TreeCell<JSONObject> cell = new TextFieldTreeCell<>(heroConverter) {
+				@Override
+				public void updateItem(final JSONObject item, final boolean empty) {
+					super.updateItem(item, empty);
+					getStyleClass().remove("empty-row");
+					if (empty || item == null) {
+						getStyleClass().add("empty-row");
+					}
+				}
+			};
 
 			final ContextMenu menu = new ContextMenu();
 			final MenuItem addItem = new MenuItem("Hinzufügen");
@@ -214,7 +225,16 @@ public class InitiativeListController {
 		};
 
 		npcsList.setCellFactory(tv -> {
-			final TreeCell<Tuple<String, JSONObject>> cell = new TextFieldTreeCell<>(npcConverter);
+			final TreeCell<Tuple<String, JSONObject>> cell = new TextFieldTreeCell<>(npcConverter) {
+				@Override
+				public void updateItem(final Tuple<String, JSONObject> item, final boolean empty) {
+					super.updateItem(item, empty);
+					getStyleClass().remove("empty-row");
+					if (empty || item == null) {
+						getStyleClass().add("empty-row");
+					}
+				}
+			};
 
 			final ContextMenu menu = new ContextMenu();
 			final MenuItem addItem = new MenuItem("Hinzufügen");

@@ -324,7 +324,7 @@ public class ParticipantUI {
 	}
 
 	private void setColor(final ProgressBar bar, final Color color) {
-		bar.setStyle("-fx-accent: #" + color.toString().substring(2, 8) + ";");
+		bar.setStyle("-fx-color-progress: #" + color.toString().substring(2, 8) + ";");
 	}
 
 	public void setPreparationStage(final boolean isPreparing) {
