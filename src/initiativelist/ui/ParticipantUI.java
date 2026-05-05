@@ -109,7 +109,7 @@ public class ParticipantUI {
 		final MenuItem removeItem = new MenuItem("Entfernen");
 		menu.getItems().add(removeItem);
 		removeItem.visibleProperty().bind(preparationStage);
-		removeItem.setOnAction(e -> controller.removeActiveParticipants());
+		removeItem.setOnAction(_ -> controller.removeActiveParticipants());
 
 		MenuItem atItem;
 
@@ -122,7 +122,7 @@ public class ParticipantUI {
 				atItem = new MenuItem("Attacke");
 				menu.getItems().add(atItem);
 				atItem.visibleProperty().bind(preparationStage.not());
-				atItem.setOnAction(e -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.ATTACK, participant.getParticipant(),
+				atItem.setOnAction(_ -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.ATTACK, participant.getParticipant(),
 						participant.getAttacks().get(0)));
 				break;
 
@@ -134,7 +134,7 @@ public class ParticipantUI {
 				for (final WithAttack attack : participant.getAttacks()) {
 					final MenuItem weaponItem = new MenuItem(attack.getName());
 					weaponItem.setOnAction(
-							e -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.ATTACK, participant.getParticipant(), attack));
+							_ -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.ATTACK, participant.getParticipant(), attack));
 					((Menu) atItem).getItems().add(weaponItem);
 				}
 
@@ -152,7 +152,7 @@ public class ParticipantUI {
 				paItem = new MenuItem("Parade");
 				menu.getItems().add(paItem);
 				paItem.visibleProperty().bind(preparationStage.not());
-				paItem.setOnAction(e -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.DEFENSE, participant.getParticipant(),
+				paItem.setOnAction(_ -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.DEFENSE, participant.getParticipant(),
 						participant.getDefenses().get(0)));
 				break;
 
@@ -164,7 +164,7 @@ public class ParticipantUI {
 				for (final WithDefense defense : participant.getDefenses()) {
 					final MenuItem weaponItem = new MenuItem(defense.getName());
 					weaponItem.setOnAction(
-							e -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.DEFENSE, participant.getParticipant(), defense));
+							_ -> new SingleRollDialog(root.getScene().getWindow(), SingleRollDialog.Type.DEFENSE, participant.getParticipant(), defense));
 					((Menu) paItem).getItems().add(weaponItem);
 				}
 
@@ -186,11 +186,11 @@ public class ParticipantUI {
 
 		final Timeline timer = new Timeline();
 		timer.getKeyFrames().setAll(new KeyFrame(Duration.millis(750)));
-		timer.setOnFinished(event -> {
+		timer.setOnFinished(_ -> {
 			controller.resortParticipants();
 		});
 
-		final ChangeListener<Number> iniListener = (o, oldV, newV) -> {
+		final ChangeListener<Number> iniListener = (_, oldV, newV) -> {
 			if (newV.intValue() != oldV.intValue()) {
 				iniSpinner.getValueFactory().setValue(iniBase.getCurrent() + ini.getCurrent());
 			}
@@ -198,14 +198,14 @@ public class ParticipantUI {
 
 		ini.currentProperty().addListener(iniListener);
 		iniBase.currentProperty().addListener(iniListener);
-		iniSpinner.getValueFactory().valueProperty().addListener((o, oldV, newV) -> {
+		iniSpinner.getValueFactory().valueProperty().addListener((_, oldV, newV) -> {
 			if (!newV.equals(oldV)) {
 				ini.setManualModifier(newV - iniBase.getCurrent());
 				timer.playFromStart();
 			}
 		});
 
-		iniSpinner.disabledProperty().addListener((o, oldV, newV) -> {
+		iniSpinner.disabledProperty().addListener((_, oldV, newV) -> {
 			if (!newV.equals(oldV)) {
 				timer.playFromStart();
 			}
@@ -216,7 +216,7 @@ public class ParticipantUI {
 		final Energy lep = participant.getLep();
 
 		final BooleanBinding isNegative = lep.currentProperty().lessThan(0);
-		isNegative.addListener((o, oldV, newV) -> setColor(lepBar, newV ? Color.BLACK : Energy.COLOR_LEP));
+		isNegative.addListener((_, _, newV) -> setColor(lepBar, newV ? Color.BLACK : Energy.COLOR_LEP));
 
 		setColor(lepBar, isNegative.get() ? Color.BLACK : Energy.COLOR_LEP);
 
@@ -239,7 +239,7 @@ public class ParticipantUI {
 
 		disabled.set(isHeroDisabled(lep.getCurrent()));
 
-		lep.currentProperty().addListener((o, oldV, newV) -> {
+		lep.currentProperty().addListener((_, _, newV) -> {
 			disabled.set(isHeroDisabled(newV.intValue()));
 		});
 	}
@@ -299,7 +299,7 @@ public class ParticipantUI {
 			tooltip.show(bar, event.getScreenX() + 10, event.getScreenY() + 7);
 		};
 		bar.setOnMouseMoved(tooltipHandler);
-		bar.setOnMouseExited(event -> tooltip.hide());
+		bar.setOnMouseExited(_ -> tooltip.hide());
 		bar.setOnMouseDragged(event -> {
 			if (event.isPrimaryButtonDown()) {
 				changeHandler.handle(event);
@@ -313,10 +313,10 @@ public class ParticipantUI {
 
 		final Timeline timer = new Timeline();
 		timer.getKeyFrames().setAll(new KeyFrame(Duration.millis(250)));
-		timer.setOnFinished(event -> {
+		timer.setOnFinished(_ -> {
 			tooltip.setOpacity(1);
 		});
-		bar.setOnMouseEntered(event -> {
+		bar.setOnMouseEntered(_ -> {
 			tooltip.setOpacity(0);
 			timer.playFromStart();
 		});

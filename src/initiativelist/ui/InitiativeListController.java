@@ -115,7 +115,7 @@ public class InitiativeListController {
 		round.getStyleClass().clear();
 		phase.getStyleClass().clear();
 
-		list.setCellFactory(list -> new ListCell<>() {
+		list.setCellFactory(_ -> new ListCell<>() {
 			@Override
 			public void updateItem(final ParticipantUI item, final boolean isEmpty) {
 				super.updateItem(item, isEmpty);
@@ -132,7 +132,7 @@ public class InitiativeListController {
 		participants = FXCollections.observableArrayList(item -> new Observable[] { item.getRoot().heightProperty() });
 		list.setItems(participants.sorted(participantSorting));
 
-		root.sceneProperty().addListener((o, oldV, newV) -> {
+		root.sceneProperty().addListener((_, _, newV) -> {
 			if (newV != null) {
 				final DoubleBinding height = newV.heightProperty().subtract(34);
 				list.maxHeightProperty().bind(height);
@@ -143,7 +143,7 @@ public class InitiativeListController {
 
 		selection = list.getSelectionModel();
 
-		selected.addListener((o, oldV, newV) -> {
+		selected.addListener((_, _, newV) -> {
 			selection.select(newV);
 			list.scrollTo(newV);
 			if (newV != null) {
@@ -171,7 +171,7 @@ public class InitiativeListController {
 			}
 		};
 
-		heroesList.setCellFactory(tv -> {
+		heroesList.setCellFactory(_ -> {
 			final TreeCell<JSONObject> cell = new TextFieldTreeCell<>(heroConverter) {
 				@Override
 				public void updateItem(final JSONObject item, final boolean empty) {
@@ -185,7 +185,7 @@ public class InitiativeListController {
 
 			final ContextMenu menu = new ContextMenu();
 			final MenuItem addItem = new MenuItem("Hinzufügen");
-			addItem.setOnAction(e -> {
+			addItem.setOnAction(_ -> {
 				@SuppressWarnings("unchecked")
 				final TreeItem<JSONObject>[] selectedItems = heroesList.getSelectionModel().getSelectedItems().toArray(new TreeItem[0]);
 				for (final TreeItem<JSONObject> selected : selectedItems) {
@@ -224,7 +224,7 @@ public class InitiativeListController {
 			}
 		};
 
-		npcsList.setCellFactory(tv -> {
+		npcsList.setCellFactory(_ -> {
 			final TreeCell<Tuple<String, JSONObject>> cell = new TextFieldTreeCell<>(npcConverter) {
 				@Override
 				public void updateItem(final Tuple<String, JSONObject> item, final boolean empty) {
@@ -238,7 +238,7 @@ public class InitiativeListController {
 
 			final ContextMenu menu = new ContextMenu();
 			final MenuItem addItem = new MenuItem("Hinzufügen");
-			addItem.setOnAction(e -> {
+			addItem.setOnAction(_ -> {
 				final List<TreeItem<Tuple<String, JSONObject>>> toRemove = new ArrayList<>();
 				npcsList.getSelectionModel().getSelectedItems().forEach(item -> activateNPCs(item, toRemove));
 				toRemove.forEach(item -> {
@@ -451,16 +451,16 @@ public class InitiativeListController {
 		final ContextMenu menu = new ContextMenu();
 
 		final MenuItem participantsItem = new MenuItem("Kampfbeteiligte");
-		participantsItem.setOnAction(event -> setState(!heroesList.isManaged()));
+		participantsItem.setOnAction(_ -> setState(!heroesList.isManaged()));
 
 		final MenuItem randomIniItem = new MenuItem("Zufällige Initiative");
-		randomIniItem.setOnAction(event -> participants.forEach(p -> p.getParticipant().randomizeIni(false)));
+		randomIniItem.setOnAction(_ -> participants.forEach(p -> p.getParticipant().randomizeIni(false)));
 
 		final MenuItem randomNPCIniItem = new MenuItem("Zufällige Initiative (NSCs)");
-		randomNPCIniItem.setOnAction(event -> participants.forEach(p -> p.getParticipant().randomizeIni(true)));
+		randomNPCIniItem.setOnAction(_ -> participants.forEach(p -> p.getParticipant().randomizeIni(true)));
 
 		final MenuItem resetItem = new MenuItem("Kampfbeginn");
-		resetItem.setOnAction(event -> {
+		resetItem.setOnAction(_ -> {
 			setState(false);
 			reset();
 		});
