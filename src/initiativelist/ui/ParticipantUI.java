@@ -230,7 +230,7 @@ public class ParticipantUI {
 			if (MouseButton.PRIMARY.equals(event.getButton())) {
 				changeHandler.handle(event);
 			} else {
-				lep.setManualModifier(-getProgressValue(lepBar, event, lep.getMax()) - lep.getMax());
+				lep.setManualModifier(-getProgressValue(lepBar, event, lep.getValue()) - lep.getValue());
 			}
 			tooltipHandler.handle(event);
 		});
@@ -288,14 +288,14 @@ public class ParticipantUI {
 	private void registerHandlers(final ProgressBar bar, final Energy energy, final BooleanExpression isNegative) {
 		final EventHandler<MouseEvent> changeHandler = event -> {
 			if (MouseButton.PRIMARY.equals(event.getButton())) {
-				energy.setManualModifier(getProgressValue(bar, event, energy.getMax()) - energy.getMax());
+				energy.setManualModifier(getProgressValue(bar, event, energy.getValue()) - energy.getValue());
 			}
 		};
 		bar.setOnMouseClicked(changeHandler);
 
 		final Tooltip tooltip = new Tooltip();
 		final EventHandler<MouseEvent> tooltipHandler = event -> {
-			tooltip.setText((isNegative.get() ? "-" : "") + getProgressValue(bar, event, energy.getMax()));
+			tooltip.setText((isNegative.get() ? "-" : "") + getProgressValue(bar, event, energy.getValue()));
 			tooltip.show(bar, event.getScreenX() + 10, event.getScreenY() + 7);
 		};
 		bar.setOnMouseMoved(tooltipHandler);
